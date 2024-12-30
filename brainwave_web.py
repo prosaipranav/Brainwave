@@ -1,5 +1,5 @@
 import streamlit as st 
-from streamlit_option_menu import option_menu
+
 
 # to config the page layout 
 
@@ -41,28 +41,12 @@ st.markdown(
 )
 
 
-def main():
+def main1():
     st.divider()
-    # Initialize active choice index only once
-    if "active_index" not in st.session_state:
-        st.session_state.active_index = 0  # Set "Home" as default initially
-
-    # Define choices and their respective indices
+    
     choices = ["Home", "Source Code", "MySQL Command", "Chatbot"]
-    choice_index_map = {choice: idx for idx, choice in enumerate(choices)}
+    choice = st.sidebar.selectbox("Menu", choices)
 
-    # Get the selected menu option and index
-    choice = option_menu(
-        menu_title=None,
-        options=choices,
-        icons=["house", "tools", "archive", "robot",],
-        orientation="horizontal",
-        key="menu_bar",
-        default_index=st.session_state.active_index
-    )
-
-    # Update the active index in session state
-    st.session_state.active_index = choice_index_map[choice]
     # Conditional rendering based on selected menu item
     if choice == "Home":
         st.header("About Us :wave:")
@@ -598,4 +582,4 @@ CREATE TABLE quiz_answers (
 # Run the main function
 
 if __name__ == '__main__':
-    main()
+    main1()
